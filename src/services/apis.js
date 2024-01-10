@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "https://smart-study-hub.onrender.com"
 
 // AUTH ENDPOINTS
 export const Authendpoints = {
