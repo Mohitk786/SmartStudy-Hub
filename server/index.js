@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 app.use((req, res, next) => {
   // Allow requests from your specific domain
-  res.header('Access-Control-Allow-Origin', 'https://smart-study-hub.netlify.app');
+  res.header('Access-Control-Allow-Origin', process.env.DOMAIN`);
 
   // Allow credentials (cookies, authorization headers, etc.)
   res.header('Access-Control-Allow-Credentials', true);
