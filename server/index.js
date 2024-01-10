@@ -22,12 +22,12 @@ database.connect();
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(
-// 	cors({
-// 		origin:"0.0.0.0/0,
-// 		credentials:true,
-// 	})
-// )
+app.use(
+	cors({
+		origin:"https://smart-study-hub.netlify.app/"
+		credentials:true,
+	})
+)
 
 app.use(
 	fileUpload({
