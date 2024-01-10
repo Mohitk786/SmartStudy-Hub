@@ -27,7 +27,7 @@ exports.resetPasswordToken = async (req, res) => {
 			{ new: true }
 		);
 
-		const url = `{process.env.DOMAIN}/update-password/${token}`;
+		const url = `${process.env.DOMAIN}/update-password/${token}`;
 
 		await mailSender(
 			email,
