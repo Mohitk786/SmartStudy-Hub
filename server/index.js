@@ -22,14 +22,21 @@ database.connect();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: 'https://smart-study-hub.netlify.app',
-    credentials: true,
-    methods: ['GET', 'POST'], // Specify allowed methods
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // Specify allowed headers
-  })
-);
+
+app.use((req, res, next) => {
+  // Allow requests from your specific domain
+  res.header('Access-Control-Allow-Origin', 'https://smart-study-hub.netlify.app');
+
+  // Allow credentials (cookies, authorization headers, etc.)
+  res.header('Access-Control-Allow-Credentials', true);
+
+  // Specify allowed methods and headers
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+  // Continue to the next middleware
+  next();
+});
 
 app.use(
 	fileUpload({
