@@ -5,9 +5,11 @@ const initialState = {
   cart: localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : [],
-  total: localStorage.getItem("total")
+
+  total: localStorage.getItem("total") //total amount
     ? JSON.parse(localStorage.getItem("total"))
     : 0,
+
   totalItems: localStorage.getItem("totalItems")
     ? JSON.parse(localStorage.getItem("totalItems"))
     : 0,
@@ -18,13 +20,16 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
+      
       const course = action.payload
       const index = state.cart.findIndex((item) => item._id === course._id)
+      //findIndex returns the index of element if inner conidtion fulfil else return -1;
 
       if (index >= 0) {
         toast.error("Course already in cart")
         return
       }
+
       // If the course is not in the cart, add it to the cart
       state.cart.push(course)
       state.totalItems++
@@ -55,6 +60,7 @@ const cartSlice = createSlice({
         toast.success("Course removed from cart")
       }
     },
+    
     resetCart: (state) => {
       state.cart = []
       state.total = 0

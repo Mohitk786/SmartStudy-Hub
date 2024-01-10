@@ -48,6 +48,7 @@ exports.createCourse = async (req, res) => {
         message: "All Fields are Mandatory",
       })
     }
+
     if (!status || status === undefined) {
       status = "Draft"
     }
@@ -79,7 +80,6 @@ exports.createCourse = async (req, res) => {
       process.env.FOLDER_NAME
     )
 
-    console.log(thumbnailImage)
 
     // Create a new course with the given details
     const newCourse = await Course.create({
@@ -89,7 +89,7 @@ exports.createCourse = async (req, res) => {
       whatYouWillLearn: whatYouWillLearn,
       price,
       tag,
-      // category: categoryDetails._id,
+      category: categoryDetails._id,
       thumbnail: thumbnailImage.secure_url,
       status: status,
       instructions,
@@ -107,6 +107,7 @@ exports.createCourse = async (req, res) => {
       },
       { new: true }
     )
+
     // Add the new course to the Categories
     const categoryDetails2 = await Category.findByIdAndUpdate(
       { _id: category },
@@ -117,13 +118,14 @@ exports.createCourse = async (req, res) => {
       },
       { new: true }
     )
-    console.log("HEREEEEEEEE", categoryDetails2)
+
     // Return the new course and a success message
     res.status(200).json({
       success: true,
       data: newCourse,
       message: "Course Created Successfully",
     })
+
   } catch (error) {
     // Handle any errors that occur during the creation of the course
     console.error(error)
@@ -134,6 +136,7 @@ exports.createCourse = async (req, res) => {
     })
   }
 }
+
 // Edit Course Details
 exports.editCourse = async (req, res) => {
   try {
@@ -284,6 +287,7 @@ exports.getAllCourses = async (req, res) => {
 //     })
 //   }
 // }
+
 exports.getCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body
@@ -314,12 +318,6 @@ exports.getCourseDetails = async (req, res) => {
       })
     }
 
-    // if (courseDetails.status === "Draft") {
-    //   return res.status(403).json({
-    //     success: false,
-    //     message: `Accessing a draft course is forbidden`,
-    //   });
-    // }
 
     let totalDurationInSeconds = 0
     courseDetails.courseContent.forEach((content) => {
@@ -345,6 +343,8 @@ exports.getCourseDetails = async (req, res) => {
     })
   }
 }
+
+
 exports.getFullCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body
@@ -442,6 +442,7 @@ exports.getInstructorCourses = async (req, res) => {
     })
   }
 }
+
 // Delete the Course
 exports.deleteCourse = async (req, res) => {
   try {

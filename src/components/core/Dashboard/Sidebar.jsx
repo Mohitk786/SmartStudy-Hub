@@ -9,14 +9,12 @@ import ConfirmationModal from "../../common/ConfirmationModal"
 import SidebarLink from "./SidebarLink"
 
 export default function Sidebar() {
-  const { user, loading: profileLoading } = useSelector(
-    (state) => state.profile
-  )
+  const { user, loading: profileLoading } = useSelector((state) => state.profile)
   const { loading: authLoading } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   
-  // to keep track of confirmation modal
+  // to keep track of logout confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null)
 
   if (profileLoading || authLoading) {
@@ -39,11 +37,13 @@ export default function Sidebar() {
           })}
         </div>
         <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700" />
+        
         <div className="flex flex-col">
           <SidebarLink
             link={{ name: "Settings", path: "/dashboard/settings" }}
             iconName="VscSettingsGear"
           />
+          
           <button
             onClick={() =>
               setConfirmationModal({

@@ -58,7 +58,7 @@ function SignupForm() {
     dispatch(sendOtp(formData.email, navigate));
 
 
-    setAccountType(ACCOUNT_TYPE.STUDENT) //==> why
+    setAccountType(ACCOUNT_TYPE.STUDENT)
   }
 
   // data to pass to Tab component

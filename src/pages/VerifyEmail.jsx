@@ -81,6 +81,7 @@ function VerifyEmail() {
                 gap: "0 6px",
               }}
             />
+
             <button
               type="submit"
               className="w-full bg-yellow-50 py-[12px] px-[12px] rounded-[8px] mt-6 font-medium text-richblack-900"
@@ -88,12 +89,15 @@ function VerifyEmail() {
               Verify Email
             </button>
           </form>
+          
           <div className="mt-6 flex items-center justify-between">
+            
             <Link to="/signup">
               <p className="text-richblack-5 flex items-center gap-x-2">
                 <BiArrowBack /> Back To Signup
               </p>
             </Link>
+            
             <button
               className="flex items-center text-blue-100 gap-x-2"
               onClick={() => (sendOtp(signupData.email))}
@@ -101,7 +105,9 @@ function VerifyEmail() {
               <RxCountdownTimer />
               Resend it
             </button>
+
           </div>
+          
         </div>
       )}
     </div>
