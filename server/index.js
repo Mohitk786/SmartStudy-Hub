@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin:"https://smart-study-hub.netlify.app/"
+		origin:"*"
 		credentials:true,
 	})
 )
